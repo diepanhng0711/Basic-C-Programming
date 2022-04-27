@@ -85,17 +85,26 @@ KeyType Delete_Min(TreeType *Tree) {
     else return Delete_Min(&(*Tree)->left);
 }
 
+//Tìm node Trái nhất
+TreeType min_Node(TreeType Tree) {
+    TreeType cur = Tree;
+
+    while (cur && cur->left != NULL) cur = cur->left;
+
+    return cur;
+}
+
 //Xóa một node trong cây
 void Delete_Node (KeyType k, TreeType *Tree){
     if(*Tree != NULL){
         if (strcmp(((*Tree)->key).model, k.model) > 0) Delete_Node(k, &(*Tree)->left);
         else if (strcmp(((*Tree)->key).model, k.model) < 0) Delete_Node(k, &(*Tree)->right);
-        else if ((*Tree)->left == NULL && (*Tree)->right == NULL) Tree = NULL;
+        else if ((*Tree)->left == NULL && (*Tree)->right == NULL) *Tree = NULL;
         else if ((*Tree)->left == NULL) (*Tree) = (*Tree)->right;
         else if ((*Tree)->right == NULL) (*Tree) = (*Tree)->left;
             else (*Tree)->key = Delete_Min(&(*Tree)->right);
         }
-    }
+}
 
 //Con trái
 TreeType Left_Child(TreeType Tree) {

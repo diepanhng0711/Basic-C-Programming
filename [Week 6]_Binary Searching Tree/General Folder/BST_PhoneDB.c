@@ -131,6 +131,12 @@ int main()
             break;
         case 6:
             printf("6. Save to file\n");
+            FILE *fptr = fopen("PhoneDB_out.txt", "w");
+                if (fptr == NULL) {
+                printf("Cannot open %s\n", "PhoneDB_out.txt");
+                return;
+            }
+            fclose(fptr);
             int dis1;
             printf("Please enter your Order (Pre = 1 / Post = 2 / In = 3): ");
             scanf("%d", &dis1);
